@@ -1,24 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="scripts/app.js"></script>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Cormorant+Garamond:wght@300&family=Moon+Dance&family=Nunito:wght@300;400;600&family=Poiret+One&display=swap" rel="stylesheet">
-    <title>Animal Crossing Memory Game</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="scripts/app.js" defer></script>
+  <link rel="stylesheet" href="./styles/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Cormorant+Garamond:wght@300&family=Moon+Dance&family=Nunito:wght@300;400;600&family=Poiret+One&display=swap" rel="stylesheet">
+  <title>Animal Crossing Memory Game</title>
 </head>
+
 <body>
-    
+  <!-- DIFFICULTY SELECTION SCREEN -->
+  <div id="difficulty-screen">
+    <img src="../../images/ac_mainpage_logo.png" alt="Animal Crossing Memory Game Logo" class="main-logo">
+    <h2 class="tagline">Find matching pairs of Animal Crossing characters!</h2>
+    <div class="difficulty-cards">
+
+      <div class="diff-card" onclick="startGame('easy')">
+        <img src="../../images/easy.png" alt="Easy Logo" class="diff-icon">
+        <div class="diff-title">Easy</div>
+        <div class="diff-detail">12 cards<br>6 pairs<br>30 seconds</div>
+      </div>
+
+      <div class="diff-card" onclick="startGame('medium')">
+        <img src="../../images/medium.png" alt="Medium Logo" class="diff-icon">
+        <div class="diff-title">Medium</div>
+        <div class="diff-detail">16 cards<br>8 pairs<br>60 seconds</div>
+      </div>
+
+      <div class="diff-card" onclick="startGame('hard')">
+        <img src="../../images/hard.png" alt="Hard Logo" class="diff-icon">
+        <div class="diff-title">Hard</div>
+        <div class="diff-detail">24 cards<br>12 pairs<br>90 seconds</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen">
     <div class="top">
-        <button class="reset">Reset</button>
-        <div id="timer"></div>
-        </div>
-        <h2>Find matching pairs of Animal Crossing characters!</h2>
-        <h2 class="result"></h2>
-    
-    
+      <button class="back-btn" onclick="goToMenu()">← Menu</button>
+      <div id="timer"></div>
+      <button class="reset">Reset</button>
+    </div>
+    <h2 class="result"></h2>
     <div class="outer-grid"></div>
+  </div>
+
+  <!-- MODAL -->
+<div id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-message" id="modal-message"></div>
+    <button class="modal-btn" id="modal-btn">OK</button>
+  </div>
+</div>
 </body>
 </html>

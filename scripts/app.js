@@ -1,256 +1,195 @@
-// function init() {
-//     const grid = document.querySelector('.outer-grid')
-//     const resetBtn = document.querySelector('.reset')
-    
-//     const width = 5
-//     const gridCellCount = width * 2
-//    // const images =['../../images/kkslider.webp', '../../images/celeste.png', '../../images/timmytommy.webp', '../../images/reese.webp', '../../images/gulliver.webp', '../../images/kkslider.webp', '../../images/celeste.png', '../../images/timmytommy.webp', '../../images/reese.webp', '../../images/gulliver.webp']
-//     const images = [
-//          {name: 'kkslider', image: '../../images/kkslider.webp'},
-//          {name: 'celeste', image: '../../images/celeste.png'},
-//          {name: 'timmytommy', image: '../../images/timmytommy.webp'},
-//          {name: 'reese', image: '../../images/reese.webp'},
-//          {name: 'gulliver', image: '../../images/gulliver.webp'},
-//          {name: 'kkslider', image: '../../images/kkslider.webp'},
-//          {name: 'celeste', image: '../../images/celeste.png'},
-//          {name: 'timmytommy', image: '../../images/timmytommy.webp'},
-//          {name: 'reese', image: '../../images/reese.webp'},
-//          {name: 'gulliver', image: '../../images/gulliver.webp'}
-//     ]
-//    const shuffledImages = images.sort(() => 0.5 - Math.random());
-
-//    let x 
-//    let y
-//     function createCells() {
-//         for (let i = 0; i < gridCellCount; i++) {
-//             // main div
-//             const mainDiv = document.createElement('div')
-//             grid.appendChild(mainDiv)
-//             mainDiv.className = 'main-box'
-
-//             // // front div: the leaf
-//             // const frontDiv = document.createElement('div')
-//             // mainDiv.appendChild(frontDiv)
-//             // frontDiv.className = 'front-box'
-
-//             // const leaf = document.createElement('img')
-//             // leaf.src = '../../images/leaf.png'
-//             // frontDiv.appendChild(leaf)
-
-//             // back div: the image
-//             // const backDiv = document.createElement('div')
-//             // mainDiv.appendChild(backDiv)
-//             // backDiv.className = 'back-box'
-            
-//             const img = document.createElement('img')
-//              img.src = shuffledImages[i].image
-//             mainDiv.appendChild(img) 
-//             //   y = shuffledImages[i].name
-//             //  x = img.src
-//             addImg()
-//             function addImg(event){
-//                 console.log(event.target.id)
-//                 console.log("addddd")
-               
-//             }
-     
-//             //   img.classList.add('pics')
-//             //   return img
-//         } 
-//     }
-//     createCells()
-
-//     const cards = document.querySelectorAll('.main-box')
-//     const back = document.querySelectorAll('.back-box')
-
-//     let firstCard
-//     let secondCard 
-
-//     let count = 0
-
-//     function addImage () {
-//         console.log('hi')
-//         }
-    
-//     // function flipImage(e) { 
-//     //         count++
-//     //      if (count < 3) {
-//     //         this.classList.add('flip') 
-//     //         if (count === 1) {
-                
-//     //             firstCard = e.target
-//     //             console.log(firstCard)
-//     //         }
-//     //        else if (count === 2) {
-//     //             secondCard = e.target
-//     //             console.log(secondCard)
-//     //         }
-//     //         console.log(count)
-//     //         // console.log(this.shuffledImages)
-//     //     }
-//     // }
-// // compare()
-// //   function compare () {
-// //      for (let i=0; i<=shuffledImages.length; i++) {
-// //         console.log('the name is')
-// //         console.log(shuffledImages[i].name)
-         
-// //      }
-// //    }
-
-
-//     cards.forEach(box => box.addEventListener('click', createCells))
-// }
-// window.addEventListener('DOMContentLoaded', init)
-
-
-
-
-
-// NEW CODE:
-
-function init(){
-const grid = document.querySelector('.outer-grid');
-const resetBtn = document.querySelector('.reset');
-let interval
-const timeValue = document.getElementById("timer")
-// const result = document.querySelector('.results')
-
-const width = 4;
-const gridCellCount = width * 3;
-const images = [
-  { name: 'kkslider', image: '../../images/kkslider.webp' },
-  { name: 'celeste', image: '../../images/celeste.png' },
+const ALL_IMAGES = [
+  { name: 'kkslider',   image: '../../images/kkslider.png' },
+  { name: 'celeste',    image: '../../images/celeste.png' },
   { name: 'timmytommy', image: '../../images/timmy-tommy.png' },
-  { name: 'reese', image: '../../images/reese.webp' },
-  { name: 'gulliver', image: '../../images/gulliver.webp' },
-  { name: 'mabel', image: '../../images/mabel.png' },
-  { name: 'kkslider', image: '../../images/kkslider.webp' },
-  { name: 'celeste', image: '../../images/celeste.png' },
-  { name: 'timmytommy', image: '../../images/timmy-tommy.png' },
-  { name: 'reese', image: '../../images/reese.webp' },
-  { name: 'gulliver', image: '../../images/gulliver.webp' },
-  { name: 'mabel', image: '../../images/mabel.png' },
+  { name: 'reese',      image: '../../images/reese.png' },
+  { name: 'gulliver',   image: '../../images/gulliver.png' },
+  { name: 'mabel',      image: '../../images/mabel.png' },
+  { name: 'isabelle',   image: '../../images/isabelle.png' },
+  { name: 'tom_nook',   image: '../../images/rover.png' },
+  { name: 'blathers',   image: '../../images/blathers.png' },
+  { name: 'flick',      image: '../../images/wisp.png' },
+  { name: 'cj',         image: '../../images/brewster.png' },
+  { name: 'kicks',      image: '../../images/kicks.png' },
 ];
 
-//shuffleArray takes in the images array as an input arr
-//then it uses a built-in method "sort()" to arrange them alphabetically
-//Math.random() returns a value between 0 and 1
-//so -0.5 is used to have both positive and negative values
-//now elements in the array can be rearranged to both right and left positions of the array
-const shuffleArray = arr => 
-    arr.sort(() => Math.random() - 0.5)
-
-// stored the shuffled array into this variable
-const shuffledImages = shuffleArray(images);
-
-// create the cells
-function createCard (image) {
-  const mainBox = document.createElement('div');
-  mainBox.classList.add('main-box');
-
-  const backBox = document.createElement('div');
-  backBox.classList.add('back-box');
-  backBox.innerHTML = `<img src=${image.image} alt=${image.name}>`;
-  mainBox.classList.add(`${image.name}`)
-
-  const frontBox = document.createElement('div');
-  frontBox.classList.add('front-box');
-
-  mainBox.appendChild(backBox);
-  mainBox.appendChild(frontBox);
-
-  return mainBox;
+const DIFFICULTY = {
+  easy:   { pairs: 6,  timeLimit: 30,  gridClass: 'grid-easy'},
+  medium: { pairs: 8,  timeLimit: 60,  gridClass: 'grid-medium'},
+  hard:   { pairs: 12, timeLimit: 90, gridClass: 'grid-hard'},
 };
 
-const addCardsToGrid = () => {
-  shuffledImages.forEach(image => {
-    const card = createCard(image);
-    grid.appendChild(card);
-  });
-};
+let interval = null;
 
-// timer
-let seconds = 0
- function timeGenerator () {
-    seconds += 1;
-    
-    if (seconds >= 30) {
-      seconds = 0;
-      alert('you lost :(')
-    }
-    let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
-    timeValue.innerHTML = `<span>Timer: </span>${secondsValue}`;
+function showModal(icon, title, message, onClose) {
+  document.getElementById('modal-icon').textContent    = icon;
+  document.getElementById('modal-title').textContent   = title;
+  document.getElementById('modal-message').textContent = message;
+
+  const overlay = document.getElementById('modal-overlay');
+  const btn     = document.getElementById('modal-btn');
+
+  overlay.classList.add('show');
+
+  const close = () => {
+    overlay.classList.remove('show');
+    btn.removeEventListener('click', close);
+    if (onClose) onClose();
+  };
+
+  btn.addEventListener('click', close);
+}
+
+function startGame(difficulty) {
+  document.getElementById('difficulty-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'block';
+
+  init(difficulty);
+}
+
+function goToMenu() {
+  clearInterval(interval);
+  interval = null;
+
+  document.getElementById('game-screen').style.display = 'none';
+  document.getElementById('difficulty-screen').style.display = 'flex';
+}
+
+function init(difficulty) {
+  const config    = DIFFICULTY[difficulty];
+  const grid      = document.querySelector('.outer-grid');
+  const frontBox      = document.querySelector('.front-box');
+  const timeValue = document.getElementById('timer');
+
+  clearInterval(interval);
+
+  grid.className = 'outer-grid ' + config.gridClass;
+
+  const baseImages = ALL_IMAGES.slice(0, config.pairs);
+  let images = [...baseImages, ...baseImages];
+
+  const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
+
+  shuffleArray(images);
+
+  function createCard(image) {
+    const mainBox  = document.createElement('div');
+    mainBox.classList.add('main-box', image.name);
+
+    const backBox  = document.createElement('div');
+    backBox.classList.add('back-box');
+    backBox.innerHTML = `<img src="${image.image}" alt="${image.name}">`;
+
+    const frontBox = document.createElement('div');
+    frontBox.classList.add('front-box');
+
+    mainBox.appendChild(backBox);
+    mainBox.appendChild(frontBox);
+
+    return mainBox;
   }
+
+  function addCardsToGrid() {
+    grid.innerHTML = '';
+    images.forEach(image => grid.appendChild(createCard(image)));
+  }
+
+  let seconds = config.timeLimit;
+  let s = seconds < 10 ? `0${seconds}` : seconds;
+
+  timeValue.innerHTML = `<span>Timer:&nbsp;&nbsp;</span>${s}`;
+
+  function timeGenerator() {
+    seconds -= 1;
+    if (seconds < 0) {
+      clearInterval(interval);
+      locked = true;
+      showModal('😢', 'Time\'s Up!', 'Better luck next time!');
+      return;
+    }
+    let s = seconds < 10 ? `0${seconds}` : seconds;
+    timeValue.innerHTML = `<span>Timer:&nbsp;&nbsp;</span>${s}`;
+  }
+
   interval = setInterval(timeGenerator, 1000);
 
+  let firstSelection = '', secondSelection = '';
+  let count = 0, winCounter = 0;
+  let temp1 = '', temp2 = '';
+  let locked = false;
 
-let firstSelection = ''
-let secondSelection = ''
-let count = 0 
-let winCounter = 0 
+  function flipCard(event) {
+    const clickedCard = event.currentTarget;
 
-let temp1 = ''
-let temp2 = ''
-function flipCard(event) {
-  const clickedCard = event.currentTarget;
-  count++
-  if (count < 3) {
-  clickedCard.classList.add('flip')
-  if (count === 1) {
-    temp1 = clickedCard
-    firstSelection = clickedCard.classList[1]
-    console.log(firstSelection)
-    console.log(temp1)
+    if (locked) return;
+    if (clickedCard === temp1) return;
+    if (clickedCard.classList.contains('flip')) return;
 
-  } else if (count === 2) {
-    temp2 = clickedCard
-    secondSelection = clickedCard.classList[1]
-    console.log(secondSelection)
+    count++;
+    if (count < 3) {
+      clickedCard.classList.add('flip');
+      if (count === 1) {
+        temp1 = clickedCard;
+        firstSelection = clickedCard.classList[1];
+      } else if (count === 2) {
+        temp2 = clickedCard;
+        secondSelection = clickedCard.classList[1];
+        if (firstSelection !== secondSelection) {
+          locked = true;
 
-    if (firstSelection !== secondSelection) {
-        console.log('not matched')
-        let delay = setTimeout(() => {
-            temp1.classList.add('shake')
-            temp2.classList.add('shake')
+          setTimeout(() => {
+            temp1.classList.add('shake');
+            temp2.classList.add('shake');
+            temp1.classList.remove('flip');
+            temp2.classList.remove('flip');
 
-            temp1.classList.remove('flip')
-            temp2.classList.remove('flip')
-            
-            console.log(clickedCard)
-          }, 900)
-          count =0
-      }
-      else if (firstSelection === secondSelection) {
-        console.log('matched')
-        count =0
-        winCounter++
-        if (winCounter === 6) {
-            alert('you won!')
+            setTimeout(() => {
+              temp1.classList.remove('shake');
+              temp2.classList.remove('shake');
+              count = 0;
+              locked = false;
+            }, 400);
+          }, 500);
+        } else {
+          count = 0;
+          winCounter++;
+          if (winCounter === config.pairs) {
+            clearInterval(interval);
+            showModal('🎉', 'You Won!', `You finished in ${config.timeLimit - seconds} seconds!`);
+          }
         }
       }
-      console.log(count)
+    }
   }
-}
-}
 
-const bindClickToCards = () => {
-  const cards = document.querySelectorAll('.main-box');
-  cards.forEach(card => card.addEventListener('click', flipCard));
-};
+  function bindClickToCards() {
+    document.querySelectorAll('.main-box').forEach(card => {
+      card.addEventListener('click', flipCard);
+    });
+  }
 
-const resetGrid = () => {
-  grid.innerHTML = '';
+  function resetGrid() {
+    clearInterval(interval);
+    grid.classList.remove('game-over'); 
+
+    seconds = config.timeLimit; count = 0; winCounter = 0;
+    firstSelection = ''; secondSelection = '';
+    temp1 = ''; temp2 = '';
+    locked = false;
+
+    shuffleArray(images);
+    addCardsToGrid();
+    bindClickToCards();
+    
+    let rs = seconds < 10 ? `0${seconds}` : seconds;
+    timeValue.innerHTML = `<span>Timer:&nbsp;&nbsp;</span>${rs}`;
+    interval = setInterval(timeGenerator, 1000);
+  }
+
+  const resetBtn = document.querySelector('.reset');
+  resetBtn.replaceWith(resetBtn.cloneNode(true));
+  document.querySelector('.reset').addEventListener('click', resetGrid);
+
   addCardsToGrid();
   bindClickToCards();
-  shuffleArray(images)
-  count = 0
-  seconds = 0
-};
-
-resetBtn.addEventListener('click', resetGrid);
-
-addCardsToGrid();
-bindClickToCards();
 }
- window.addEventListener('DOMContentLoaded', init)
